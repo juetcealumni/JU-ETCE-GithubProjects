@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/index.css">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="static/julogo.png" type="image/x-icon">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="static/index.js"></script>
+    <title>ETCE GitHub Projects</title>
+  </head>
+  <body>
+    <!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">
+        <img src="static/repo-logo.png" alt="No image" width="30" height="30" class="d-inline-block align-top">
+        <span class="nav-name"> JU ETCE Projects </span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- upper-box -->
+  <div class="head-box">
+    <p class="welcome" data-aos="fade-up" data-aos-duration="3000">
+      <span>Let's Build Something Awesome Together</span>
+    </p>  
+  </div>
+
+  <!-- introduction -->
+  <div class="mid-box">
+    <h1 data-aos="flip-left" class="heading" data-aos-duration="2000" style="color: #167D7F;">Welcome,Coders!!!</h1>
+    <!-- info about opensource -->
+    <div class="row info-box">
+      <div class="col-md-6" style="text-align: center;">
+        <img data-aos="fade-right" data-aos-duration="3000" src="static/octocat-cust.svg" alt="" width="90%" height="90%">
+      </div>
+      <div class="col-md-6 opens" data-aos="fade-left" data-aos-duration="3000">
+        <h1 class="subhead">Why OpenSource?</h1>
+        <p>Open-Source Software is a type of software whose code is publicly available to use and modify. Open-Source Contribution involves contributing to the development or improvement of open-source software.</p>
+        <h1 class="subhead">Why Should You Contribute?</h1>
+        <p>Ever wonder if all these projects/software were single-handedly maintained by a single developer?
+          What would have been its impact on them and pretty much on us?
+          
+          The software would not have had so many features and upgradations. This is where open source contribution comes in. Contributors from around the world help develop and improve the software for every one of us who use it. Being a contributor will give you the super-power to be a part of something that is impacting so many lives.
+          
+          Apart from the impact that you get to create, it also helps you become a better developer and with time a good mentor, leader, and passionate team player.</p>
+          
+      </div>
+    </div>
+    
+    <div data-aos="fade-left" style="text-align: center;" data-aos-duration="2000">
+      <h1 class="heading">Our GitHub Organization</h1>
+      <div>
+        <img src="static/repo-logo.png" alt="" height="200" width="200" style="border-radius: 50%;">
+      </div>
+      <a href="https://github.com/juetcefreshers" class="btn btn-dark btn-lg" style="margin-top: 30px;" target="blank">Visit GitHub Page</a>
+    </div>
+  </div>
+  <!-- all projects  -->
+  <div class="mainbox">
+  <h1 class="heading" data-aos="zoom-in" style="color: #167D7F;">Our Projects</h1>
+  {% for name in context|slice(3) %}
+  <div class="row">
+      {% for col in name %}
+        <div class="col-md-4">
+            <div data-aos="fade-down" data-aos-duration="3000" class="card" style="width: 80%;">
+                <img src="static/coder-{{range(1, 16) | random }}.svg" class="card-img-top" alt="No image" height="200">
+                <div class="card-body">
+                  <h5 class="card-title">{{col.name}}</h5>
+                  <span class="card-text">{{col.lang}}</span>
+                  <div class="row" style="margin-top: 10px;">
+                    <div class="col-3"><img src="static/fork.svg" alt=""> {{col.fork}}</div>
+                    <div class="col-3"><img src="static/star.svg" alt=""> {{col.star}}</div>
+                    <div class="col-6"><img src="static/license.svg" alt=""> {{col.license}}</div>
+                  </div>
+                  <div style="margin-top: 20px; text-align:center;">
+                    <a href="{{col.url}}" class="btn btn-dark theme-but" target="blank" >View Project</a>
+                    <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#Modal-{{col.id}}">About project</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="Modal-{{col.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{col.name}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <p>{{col.desc}}</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-dark theme-but" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+        </div>
+      {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+    <!-- Aos JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>
